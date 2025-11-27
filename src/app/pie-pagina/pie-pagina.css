@@ -1,0 +1,101 @@
+/*FOOTER GENERAL */
+.footer {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+}
+
+/* 🌟 Sección superior (CTA o título) */
+.footer-top {
+  text-align: center;
+  padding: 50px 20px 30px 20px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-white);
+}
+
+.footer-top h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.footer-top p {
+  margin-bottom: 20px;
+  color: var(--color-bg-light);
+}
+
+/* 🔘 Botón principal */
+.btn-primary {
+  background-color: var(--color-secondary);
+  border: none;
+  padding: 12px 25px;
+  color: var(--color-white);
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary-dark);
+  transform: scale(1.05);
+}
+
+/* 📚 Contenido inferior */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px 20px;
+  gap: 20px;
+  background-color: var(--color-neutral-dark);
+  color: var(--color-neutral);
+}
+
+.footer-column {
+  max-width: 250px;
+}
+
+.footer-column h3 {
+  color: var(--color-accent);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-column ul li:hover {
+  color: var(--color-accent-dark);
+  cursor: pointer;
+}
+
+/* 🌐 Íconos sociales */
+.social-icons a {
+  color: var(--color-white);
+  margin-right: 12px;
+  font-size: 20px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.social-icons a:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ⚖️ Copy inferior */
+.footer-copy {
+  text-align: center;
+  padding: 15px;
+  background-color: var(--color-primary-dark);
+  font-size: 14px;
+  color: var(--color-bg-light);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

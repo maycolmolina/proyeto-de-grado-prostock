@@ -1,0 +1,51 @@
+<div class="contenedor">
+  <div class="form-container">
+    <h2>publicar recurso digital</h2>
+    <form>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input name="nombre" id="nombre" type="text" [(ngModel)]="plantilla.nombre" />
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          id="descripcion"
+          rows="4"
+          name="descripcion"
+          [(ngModel)]="plantilla.descripcion"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria" [(ngModel)]="plantilla.categoria">
+          <option value="">Seleccione una categoría</option>
+          <option value="Plantillas">Plantillas</option>
+          <option value="Ebooks">E-books / Documentos</option>
+          <option value="Graficos">Gráficos / Diseño</option>
+          <option value="Audio">Audio</option>
+          <option value="Video">Video</option>
+        </select>
+      </div>
+      <div class="form-group checkbox">
+        <label>
+          <input type="checkbox" id="gratis" name="gratis" [(ngModel)]="plantilla.gratis" />
+          Gratis
+        </label>
+      </div>
+      @if(plantilla.gratis===false){
+      <div class="form-group">
+        <label for="precio">Precio (C$)</label>
+        <input id="precio" type="number" step="0.01" name="precio" [(ngModel)]="plantilla.precio" />
+      </div>
+      }
+
+      <!--Campo para seleccionar archivo -->
+      <div class="form-group">
+        <label for="archivo">Archivo</label>
+        <input id="archivo" type="file" (change)="capturarFile($event)" />
+      </div>
+      <button (click)="enviar()" type="button">Guardar</button>
+    </form>
+  </div>
+</div>

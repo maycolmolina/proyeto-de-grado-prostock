@@ -1,0 +1,59 @@
+
+.hero {
+  background: url('/habitacion.jpg') no-repeat center center/cover;
+  color:var(--color-white);
+  text-align: center;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color:var(--color-primary);
+}
+
+/* Features Section */
+.features {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color:var(--color-primary-dark);
+}
+
+.features p {
+  font-size: 1.1rem;
+  color:var(--color-neutral-dark);
+  max-width: 700px;
+  margin: 0 auto;
+}

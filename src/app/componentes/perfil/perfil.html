@@ -1,0 +1,28 @@
+<div class="container">
+  <!-- Perfil -->
+  <div class="perfil">
+    <img [src]="urli" alt="Foto de perfil" />
+    <div class="datos">
+      <h1>{{ usuario.nombre }}</h1>
+      <p>{{ usuario.tipo }}</p>
+      <div class="contacto">
+        <span><i class="fas fa-phone"></i> {{ usuario.numero }}</span>
+        <span><i class="fas fa-envelope"></i> {{ usuario.correo }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accesos rápidos -->
+  <div class="cards">
+    @for (acceso of accesos; track $index) {
+    <div class="card">
+      <h2>{{ acceso.titulo }}</h2>
+      @if (acceso.titulo==='Compartir perfil') {
+      <a (click)="copiarLink()"><i class="fa-solid fa-clipboard"></i> {{ acceso.texbtn }}</a>
+      }@else {
+      <a [routerLink]="acceso.link">{{ acceso.texbtn }}</a>
+      }
+    </div>
+    }
+  </div>
+</div>

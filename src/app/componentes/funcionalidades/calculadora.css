@@ -1,0 +1,40 @@
+.funcionalidades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  background: var(--color-white);
+  margin-top: 10px;
+}
+
+.card {
+  background: var(--color-neutral);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--color-primary-dark);
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: var(--color-neutral-dark);
+  line-height: 1.4;
+}

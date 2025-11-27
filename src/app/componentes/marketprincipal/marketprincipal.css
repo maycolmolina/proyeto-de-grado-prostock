@@ -1,0 +1,246 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.marketplace-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg-light);
+  padding: 10px 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.publish-btn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.publish-btn:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* ===== BANNER ===== */
+.banner {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 8px;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+}
+
+.banner h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.offers-btn {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.offers-btn:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+/* ===== TABS ===== */
+.nav-tabs {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid var(--color-neutral);
+}
+
+.tab {
+  padding: 12px 15px;
+  color: var(--color-neutral-dark);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: var(--color-primary);
+}
+
+.tab.active {
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+}
+
+/* ===== SECCIONES ===== */
+.descargables {
+  width: 100%;
+  min-height: 50px;
+}
+
+.proveedores {
+  width: 100%;
+  min-height: 50px;
+  background-color: var(--color-primary-dark);
+}
+
+/* ===== CARDS ===== */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 30px;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 2.5rem;
+  color: var(--color-white);
+}
+
+/* Colores temáticos para categorías */
+.color-purple {
+  background-color: var(--color-primary-dark);
+}
+
+.color-green {
+  background-color: var(--color-secondary);
+}
+
+.color-orange {
+  background-color: var(--color-accent);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--color-neutral);
+  color: var(--color-neutral-dark);
+  border-radius: 15px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.card-body h3 {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: var(--color-neutral-dark);
+}
+
+.card-body p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+/* ===== PRECIO ===== */
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.price.free {
+  color: var(--color-secondary);
+}
+
+/* ===== BOTONES ===== */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-success {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.btn-success:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-outline {
+  background: none;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}

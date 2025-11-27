@@ -1,0 +1,25 @@
+<div class="gene">
+<div class="registro-card">
+  <h2>Crear Cuenta</h2>
+  <form [formGroup]="form" (ngSubmit)="createuser()">
+    <input formControlName="nombre" type="text" placeholder="Nombre completo" >
+    <input  autocomplete="off" formControlName="email" type="email" placeholder="Correo electrónico" >
+    <input  autocomplete="new-password"  formControlName="constrasenia" type="password" placeholder="Contraseña" >
+    <input formControlName="telefono" type="text" placeholder="Número de teléfono" >
+    <select  class="form-select" id="tipoUsuario" formControlName="tipoUsuario">
+    <option value="admin">administrador</option>
+    <option value="cliente">Cliente</option>
+    </select>
+    <button type="submit">Registrarse</button>
+  </form>
+  <div class="links">
+    <p>¿Ya tienes cuenta? <a routerLink="../login">Inicia sesión</a></p>
+  </div>
+</div>
+</div>
+
+<app-pie-pagina></app-pie-pagina>
+
+@if(cargando){
+<app-componente-carga></app-componente-carga>
+}

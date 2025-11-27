@@ -1,0 +1,10 @@
+@import './app/paleta.css'; /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-neutral-dark);
+  background-color: var(--color-white);
+}
+* {
+  margin: 0;
+}

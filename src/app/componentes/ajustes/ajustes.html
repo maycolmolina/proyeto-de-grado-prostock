@@ -1,0 +1,27 @@
+<div class="row cerrar">
+  <br /><br />
+  <div class="div col-12 d-flex justify-content-between align-items-center">
+    <h2>Editar Perfil</h2>
+    <button routerLink="../editar_P" class="btn btn-dark">Editar</button>
+  </div>
+  <div class="div col-12 d-flex justify-content-between align-items-center">
+    <h2>Modo Oscuro</h2>
+    <button (click)="toggleDarkMode(true)"  class="btn btn-dark">
+      Activar
+    </button>
+  </div>
+  <div class="div col-12 d-flex justify-content-between align-items-center">
+    <h2>Modo claro</h2>
+    <button (click)="toggleDarkMode(false)" class="btn btn-dark">Activar</button>
+  </div>
+  <div class="div col-12 d-flex justify-content-between align-items-center">
+    <h2>Deseas cambiar tu imagen para tu perfil?</h2>
+    <button routerLink="../fotoPerfil"  class="btn btn-dark">
+      cambiar 
+    </button>
+  </div>
+    <div class="div col-12 d-flex justify-content-between align-items-center">
+    <h2>Desea terminar la sesión activa?</h2>
+    <button (click)="cerrarsession()" class="btn btn-danger">Cerrar sesión</button>
+  </div>
+</div>

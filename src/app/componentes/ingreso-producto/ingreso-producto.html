@@ -1,0 +1,104 @@
+<form class="form-prod" (ngSubmit)="onSubmit()" #prodForm="ngForm" novalidate>
+  <h2>Registrar producto</h2>
+
+  <label class="field">
+    <span>Nombre</span>
+    <input
+      name="nombre"
+      [(ngModel)]="producto.nombre"
+      #nombre="ngModel"
+      required
+      maxlength="100"
+    />
+    @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+      <small class="error">El nombre es obligatorio.</small>
+    }
+  </label>
+
+  <label class="field">
+    <span>Categoría</span>
+    <select
+      name="categoria"
+      [(ngModel)]="producto.categoria"
+      #categoria="ngModel"
+      required
+    >
+      <option value="">-- Selecciona categoría --</option>
+      @for (c of categorias; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+    @if (categoria.invalid && (categoria.dirty || categoria.touched)) {
+      <small class="error">Selecciona una categoría.</small>
+    }
+  </label>
+
+  <label class="field">
+    <span>Proveedor</span>
+    <input name="proveedor" [(ngModel)]="producto.proveedor" />
+  </label>
+
+  <div class="row">
+    <label class="field small">
+      <span>Costo (C$)</span>
+      <input
+        type="number"
+        name="costo"
+        [(ngModel)]="producto.costo"
+        #costo="ngModel"
+        required
+        min="0"
+        step="0.01"
+      />
+      @if (costo.invalid && (costo.dirty || costo.touched)) {
+        <small class="error">Ingrese un costo válido.</small>
+      }
+    </label>
+
+    <label class="field small">
+      <span>Precio de venta (C$)</span>
+      <input
+        type="number"
+        name="precio_venta"
+        [(ngModel)]="producto.precio_venta"
+        #precio="ngModel"
+        required
+        min="0"
+        step="0.01"
+      />
+      @if (precio.invalid && (precio.dirty || precio.touched)) {
+        <small class="error">Ingrese un precio válido.</small>
+      }
+    </label>
+
+    <label class="field small">
+      <span>Cantidad</span>
+      <input
+        type="number"
+        name="cantidad"
+        [(ngModel)]="producto.cantidad"
+        #cantidad="ngModel"
+        required
+        min="0"
+      />
+      @if (cantidad.invalid && (cantidad.dirty || cantidad.touched)) {
+        <small class="error">Ingrese una cantidad.</small>
+      }
+    </label>
+  </div>
+  <div class="campos">
+            <label  >foto:</label><br>
+            <div class="contenfoto">
+                <img src="{{urlimgactual}}" alt="">
+            </div><br>
+            <label for="fi" class="seleccionar" >seleccionar imagen</label>
+            <input style="display: none;" (change)="cargarImagen($event)" name="" id="fi" type="file">
+  </div>
+  <div class="actions">
+    <button type="submit" [disabled]="prodForm.invalid">Guardar producto</button>
+    <button type="button" class="ghost" (click)="resetForm(prodForm)">Limpiar</button>
+  </div>
+</form>
+ @if(cargando){
+<app-componente-carga></app-componente-carga>
+}

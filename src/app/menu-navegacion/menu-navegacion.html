@@ -1,0 +1,50 @@
+<section class="encabezado" [ngClass]="{ ocultar: !menuAbierto }">
+  <img class="perfil" src="/log.png" alt="perfil" />
+  <h2>ProStock</h2>
+
+  <!-- Botón hamburguesa -->
+  <div class="menu-toggle" (click)="toggleMenu()">
+    <i class="fa-solid" [ngClass]="menuAbierto ? 'fa-xmark' : 'fa-bars'"></i>
+  </div>
+
+  <nav [class.open]="menuAbierto">
+    <ul>
+      <li (click)="toggleMenu()" routerLink="/" routerLinkActive="activo">
+        <i class="fa-solid fa-house"></i> Inicio
+      </li>
+      @if (islogin()) { @if (user.tipo == 'cliente') {
+      <li (click)="toggleMenu()" routerLink="marketprincipal" routerLinkActive="activo">
+        <i class="fa-solid fa-store"></i> Marketplace
+      </li>
+      <li (click)="toggleMenu()" routerLink="ajustes" routerLinkActive="activo">
+        <i class="fa-solid fa-gear"></i> Ajustes
+      </li>
+      } @else {
+
+      <li (click)="toggleMenu()" routerLink="marketprincipal" routerLinkActive="activo">
+        <i class="fa-solid fa-store"></i> Marketplace
+      </li>
+      <li (click)="toggleMenu()" routerLink="reportes" routerLinkActive="activo">
+        <i class="fa-solid fa-chart-line"></i> Reportes
+      </li>
+      <li (click)="toggleMenu()" routerLink="asistente" routerLinkActive="activo">
+        <i class="fa-solid fa-robot"></i> Asistente Virtual
+      </li>
+      <li (click)="toggleMenu()" routerLink="calculadora" routerLinkActive="activo">
+        <i class="fa-solid fa-calculator"></i> Funcionalidades
+      </li>
+      <li (click)="toggleMenu()" routerLink="ajustes" routerLinkActive="activo">
+        <i class="fa-solid fa-gear"></i> Ajustes
+      </li>
+      } } @else {
+      <li (click)="toggleMenu()" routerLink="sectorpro" routerLinkActive="activo">
+        <i class="fa-solid fa-layer-group"></i> Sectores Y Productos
+      </li>
+      <li (click)="toggleMenu()" class="botonlogin" routerLink="login">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span> Iniciar Sesión </span>
+      </li>
+      }
+    </ul>
+  </nav>
+</section>

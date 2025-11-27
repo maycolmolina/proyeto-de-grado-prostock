@@ -1,0 +1,77 @@
+
+
+<div class="mp-wrap">
+  <header class="mp-header">
+    <h1>Marketplace</h1>
+    <div class="controls">
+      <input type="search" placeholder="Buscar productos..." [(ngModel)]="q" />
+      <select [(ngModel)]="categoriaFiltro">
+        <option value="">Todas las categorías</option>
+        @for (c of categorias; track $index) {
+        <option [value]="c">{{ c }}</option>
+        }
+      </select>  
+    </div>
+  </header>
+  <main>
+    <section class="grid">
+      @for (p of productosFiltrados(); track p.id) {
+      <article class="card">
+        <div class="img-wrap">
+          <img [src]="p.urlimg || placeholder" [alt]="p.nombre" />
+          <div class="badge">{{ p.cantidad }} in</div>
+        </div>
+        <div class="card-body">
+          <h3 class="title">{{ p.nombre }}</h3>
+          <p class="meta">{{ p.categoria }} • {{ p.proveedor }}</p>
+
+          <div class="prices">
+            <div class="price">C$ {{ p.precio_venta }}</div>
+          </div>
+
+          <div class="actions">
+            <button (click)="verProducto(p)" title="Ver detalle">Ver</button>
+          </div>
+        </div>
+      </article>
+      } @if (productosFiltrados().length === 0) {
+      <div class="empty">estamos cargando los porductos ofertados</div>
+      }
+    </section>
+
+    <!-- Modal simple -->
+    @if(productoSeleccionado){
+    <div class="modal">
+      <div class="modal-card">
+        <button class="close" (click)="productoSeleccionado = null">✕</button>
+        <div class="modal-grid">
+          <img
+            class="modal-img"
+            [src]="productoSeleccionado.urlimg || placeholder"
+            [alt]="productoSeleccionado.nombre"
+          />
+          <div class="modal-info">
+            <h2>{{ productoSeleccionado.nombre }}</h2>
+            <p class="meta">Categoría: {{ productoSeleccionado.categoria }}</p>
+            <p>Proveedor: {{ productoSeleccionado.proveedor || 'Desconocido' }}</p>
+            <p>Cantidad: {{ productoSeleccionado.cantidad }}</p>
+            <p>Precio: C$ {{ productoSeleccionado.precio_venta }}</p>
+            <div class="modal-actions">
+              <button
+                class="primary"
+                routerLink="../visitarperfil/{{ productoSeleccionado.idUsuario }}"
+              >
+                visitar vendedor
+              </button>
+              <button (click)="pedirporwhatsapp(productoSeleccionado)" class="what">pedir por whatsapp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </main>
+</div>
+@if(cargando){
+<app-componente-carga></app-componente-carga>
+}

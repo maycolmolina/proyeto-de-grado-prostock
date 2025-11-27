@@ -1,0 +1,44 @@
+.contenido{
+    width: 100%;
+    height: 88vh;
+    background-color: black;
+    box-sizing: border-box;
+    background-color: rgb(107, 103, 103);
+    padding: 10px;
+}
+.fun .btn{
+    margin:  5px 5px ;
+}
+.imagenActual{
+    border: solid rgb(168, 167, 167) ;
+    width: 600px;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fotoPerfil{
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    border: solid rgb(165, 165, 165) 1px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+@media screen and (max-width:635px) {
+    .contenido{
+        height: 80vh;
+    }
+    .imagenActual{
+        width: auto;
+        height: auto;
+    }
+    .fotoPerfil{
+        height: 50vh;
+    }
+}
+@media screen and (max-width:487px){
+    
+        
+}

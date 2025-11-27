@@ -1,0 +1,218 @@
+<div class="container">
+  <h2>Lista de Productos</h2>
+
+  <!-- Buscador -->
+  <input type="text" placeholder="Buscar producto..." [(ngModel)]="filtro" class="buscador" />
+  <div class="accion">
+    <button
+      (click)="cambiarvista('plantillas')"
+      class="boton btn-primary"
+      [ngClass]="{ active: vista == 'plantillas' }"
+    >
+      MisPlantillas
+    </button>
+    <button
+      (click)="cambiarvista('productoventa')"
+      class="boton btn-primary"
+      [ngClass]="{ active: vista == 'productoventa' }"
+    >
+      productos en venta
+    </button>
+  </div>
+  <!-- Tabla de productos -->
+  <div class="table-responsive">
+    @if(vista==='productoventa'){
+    <table class="productos-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Costo</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (producto of productos; track producto.id) {
+        <tr>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.costo}} C$</td>
+          <td>{{ producto.precio_venta}}C$</td>
+          <td>{{ producto.cantidad }}</td>
+          <td>
+            <button (click)="verProducto(producto)">Ver</button>
+            <button (click)="eliminarProducto(producto.id, producto.urlimg, 'productos')">
+              Eliminar
+            </button>
+            <button class="btn btn-primary" (click)="mostrarVenderProducto(producto.id)">
+              Vender
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }@else{
+    <!--_____________________ vista de platillas _____________________________________ -->
+    <div class="productos-table">
+      <h2>plantillas disponibles</h2>
+      <table class="tabla-archivos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Descargas</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (plantilla of plantillas; track $index) {
+          <tr>
+            <td>{{ plantilla.nombre }}</td>
+            <td>{{ plantilla.categoria }}</td>
+            <td>{{ plantilla.descripcion }}</td>
+            @if(plantilla.gratis){
+            <td>Gratis</td>
+            }@else {
+            <td>{{ plantilla.precio }} C$</td>
+            }
+
+            <td>{{ plantilla.descargasTotales }}</td>
+            <td>
+              <button (click)="descargarArchivo(plantilla.urlFile)">ver</button>
+              <button (click)="eliminarProducto(plantilla.id, plantilla.urlFile, 'plantillas')">
+                x
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <!--_____________________ vista de platillas _____________________________________ -->
+    }
+  </div>
+
+  <!-- ventana modal para observar productos____________________ -->
+
+  @if (vistapro==true) {
+  <div class="verproducto">
+    <div class="card">
+      <strong (click)="cerra()" class="cerrar">x</strong>
+      <img [src]="productounico.urlimg" [alt]="productounico.nombre" />
+
+      <div class="cards2">
+        <div class="card-content">
+          <h2>{{ productounico.nombre }}</h2>
+          <p class="info"><span>Categoría:</span>{{ productounico.categoria }}</p>
+          <p class="info"><span>Proveedor:</span> {{ productounico.proveedor }}</p>
+          <p class="info"><span>Cantidad:</span> {{ productounico.cantidad }} unidades</p>
+          <p class="info">
+            <span>Costo:</span> <span class="costo">{{ productounico.costo }}C$</span>
+          </p>
+          <p class="info">
+            <span>Precio Venta:</span>
+            <span class="precio">{{ productounico.precio_venta }}C$</span>
+          </p>
+        </div>
+        <div class="card-content2">
+          <p class="info">
+            <span>margen por unidad:</span>{{ productounico.precio_venta - productounico.costo }}C$
+          </p>
+          <p class="info">
+            <span>procentaje de ganacia</span>
+            {{
+              ((productounico.precio_venta - productounico.costo) / productounico.costo) * 100
+                | number : '1.1-1'
+            }}%
+          </p>
+          <p class="info">
+            <span>ganacia potencial</span>
+            {{ productounico.cantidad * (productounico.precio_venta - productounico.costo) }}C$
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  }
+</div>
+<!-- ventana modal para registrar la venta de un producto -->
+
+@if (ventaMostrar) {
+<div class="card-vender-overlay">
+  <div class="card-vender">
+    <h2><i class="fa-solid fa-box"></i> {{ originalProductoVenta.nombre }}</h2>
+    <div class="card-vender-info-group">
+      <i class="fa-solid fa-warehouse"></i>
+      <div>
+        <span class="card-vender-label">Existencia actual</span>
+        <span class="card-vender-value">{{ originalProductoVenta.cantidad }} unidades</span>
+      </div>
+    </div>
+
+    <div class="card-vender-info-group editable">
+      <i class="fa-solid fa-user"></i>
+      <div>
+        <span class="card-vender-label">Nombre del comprador</span>
+        <input
+          [(ngModel)]="nombreCliente"
+          type="text"
+          class="card-vender-input"
+          placeholder="Ingrese nombre del comprador..."
+        />
+      </div>
+    </div>
+
+    <div class="card-vender-info-group editable">
+      <!-- <i class="fa-solid fa-dollar-sign"></i> -->
+       <span class="moneda">C$</span>
+      <div>
+        <span class="card-vender-label">Precio de venta - costo{{productoVentaActiva.costo}} C$</span>
+        <input
+          [(ngModel)]="productoVentaActiva.precio_venta"
+          type="number"
+          class="card-vender-input"
+          placeholder="ingrese precio C$"
+        />
+      </div>
+    </div>
+
+    <div class="card-vender-info-group editable">
+      <i class="fa-solid fa-boxes-stacked"></i>
+      <div>
+        <span class="card-vender-label">Cantidad a comprar</span>
+        <input
+          [(ngModel)]="productoVentaActiva.cantidad"
+          type="number"
+          class="card-vender-input"
+          placeholder="Ingrese cantidad..."
+          min="1"
+        />
+      </div>
+    </div>
+
+    <div class="card-vender-info-group editable">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div>
+        <span class="card-vender-label">Fecha de venta</span>
+        <input [(ngModel)]="fecha" type="date" class="card-vender-input" />
+      </div>
+    </div>
+
+    <button (click)="venderProdcuto()" class="card-vender-save-btn">
+      <i class="fa-solid fa-floppy-disk"></i> Realizar La Venta
+    </button>
+
+    <div class="card-vender-close" (click)="cerrarVenta()">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  </div>
+</div>
+}
+@if(cargando){
+<app-componente-carga></app-componente-carga>
+}

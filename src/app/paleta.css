@@ -1,0 +1,41 @@
+:root {
+  /* 🎨 Colores Primarios */
+  --color-primary: #2563EB;       /* Botones principales, encabezados, elementos clave */
+  --color-primary-dark: #1E40AF;  /* Hover, variantes oscuras */
+  --color-primary-light: #93C5FD; /* Fondos sutiles, gradientes */
+
+  /* 🌱 Secundarios */
+  --color-secondary: #10B981;      /* Éxito, confirmaciones */
+  --color-secondary-dark: #059669; /* Hover en secundarios */
+
+  /* ⚡ Acentos */
+  --color-accent: #F97316;       /* Call-to-action, alertas */
+  --color-accent-dark: #EA580C;  /* Hover en acentos */
+
+  /* ⚖️ Neutros */
+  --color-neutral-dark: #1E293B; /* Textos principales */
+  --color-neutral: #ececec;      /* Textos secundarios */
+  --color-bg-light: #F8FAFC;     /* Fondos principales */
+  --color-white: #FFFFFF;        /* Tarjetas, elementos flotantes */
+  --color-dark--:#000 
+}
+
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --color-primary: #93C5FD;
+  --color-primary-dark: #2563EB;
+  --color-primary-light: #1E40AF;
+
+  --color-secondary: #6EE7B7;
+  --color-secondary-dark: #10B981;
+
+  --color-accent: #FDBA74;
+  --color-accent-dark: #F97316;
+
+  --color-neutral-dark: #ECECEC;
+  --color-neutral: #1E293B;
+  --color-bg-light: #1E293B;
+  --color-white: #1F2937;
+  --color-dark: #FFFFFF;
+}

@@ -1,0 +1,103 @@
+.form-editar-usuario {
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: var(--color-white);
+  padding: 30px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--color-neutral-dark);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-neutral);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  background-color: var(--color-bg-light);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  box-shadow: 0 0 4px var(--color-primary-light);
+  outline: none;
+}
+
+.error {
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn-guardar,
+.btn-cancelar {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-guardar:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-cancelar {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-cancelar:hover {
+  background-color: var(--color-accent-dark);
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+  .form-editar-usuario {
+    padding: 20px;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+}

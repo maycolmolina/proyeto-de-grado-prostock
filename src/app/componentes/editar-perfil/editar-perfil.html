@@ -1,0 +1,62 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)" class="form-editar-usuario" novalidate>
+  <h2 class="form-title">Editar Usuario</h2>
+
+  <!-- Nombre -->
+  <div class="form-group">
+    <label for="nombre">Nombre Completo</label>
+    <input
+      type="text"
+      id="nombre"
+      name="nombre"
+      [(ngModel)]="usuario.nombre"
+      required
+      minlength="3"
+      placeholder="Ingrese el nombre completo"
+      #nombre="ngModel"
+    />
+    @if (nombre.invalid && nombre.touched) {
+    <small class="error"> El nombre es obligatorio y debe tener al menos 3 caracteres. </small>
+    }
+  </div>
+
+  <!-- Número -->
+  <div class="form-group">
+    <label for="numero">Número de Teléfono</label>
+    <input
+      type="tel"
+      id="numero"
+      name="numero"
+      [(ngModel)]="usuario.numero"
+      required
+      pattern="^[0-9]{8,15}$"
+      placeholder="Ingrese el número de teléfono"
+      #numero="ngModel"
+    />
+    @if(numero.invalid && numero.touched){
+    <small class="error"> El número debe contener entre 8 y 15 dígitos. </small>
+    }
+  </div>
+
+  <!-- Tipo -->
+   @if(usuario.tipo==='cliente'){
+  <div class="form-group">
+    <label for="tipo">Tipo de Usuario</label>
+    <select id="tipo" name="tipo" [(ngModel)]="usuario.tipo" required #tipo="ngModel">
+      <option value="">Seleccione un tipo</option>
+      <option value="admin">Administrador</option>
+      <option value="cliente">Cliente</option>
+    </select>
+    @if (tipo.invalid && tipo.touched) {
+    <small class="error"> Debe seleccionar un tipo de usuario. </small>
+    }
+  </div>
+  }
+  <!-- Botones -->
+  <div class="form-actions">
+    <button type="submit" class="btn-guardar" [disabled]="editForm.invalid">Guardar Cambios</button>
+    <button type="button" class="btn-cancelar" (click)="onCancelar()">Cancelar</button>
+  </div>
+</form>
+@if(cargando){
+  <app-componente-carga></app-componente-carga>
+}

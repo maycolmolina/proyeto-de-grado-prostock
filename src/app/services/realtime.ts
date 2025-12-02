@@ -22,7 +22,6 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 })
 export class Realtime {
   token = '';
-
   async remove(key: string, nodo: string) {
     const referencia = ref(this.db, nodo + '/' + key);
     await remove(referencia)
@@ -111,6 +110,47 @@ export class Realtime {
     const referencia = ref(this.db, nodo);
     const consulta = query(referencia, orderByChild('idUsuario'), equalTo(idavisitar));
     return get(consulta);
+  }
+
+  // recoleccion de datos para anailizis de la ia
+  datosIA: any = {
+    productos: [],
+    ventas: [],
+    compras: ['esto se refiere a cuando adquiero los productos , por ende esta en porductos estos datos'],
+    plantillas: [],
+  };
+  async recoleccionDatos(idUsuario: string) {
+    if (this.datosIA.productos.length != 0) {
+      return this.datosIA;
+    }
+    try {
+      // Obtener productos del usuario
+      const productosSnap = await this.getMiPro(idUsuario, 'productos');
+      if (productosSnap.exists()) {
+        const productosData = productosSnap.val();
+        // Convertir el objeto de Firebase a array
+        this.datosIA.productos = Object.keys(productosData).map((key) => ({
+          id: key,
+          ...productosData[key],
+        }));
+      } else {
+        this.alerta.info(
+          'no hay productos por lo tanto no puedo realizar un analizis de tu activida'
+        );
+        return;
+      }
+      // obtener las ventas
+      const ventas = await this.obtenerventasPro();
+      this.datosIA.ventas = ventas;
+      // obtener plantillas
+      const plantillas = await this.getPlantillas();
+      this.datosIA.plantillas = plantillas;
+      return this.datosIA;
+    } catch (error) {
+      console.error('Error recolectando datos:', error);
+      this.alerta.alertaerror('ha ocurrido un error');
+      return 0;
+    }
   }
 
   async verificarVentaDeProducto(id_pro: any): Promise<boolean | 'Error'> {
@@ -266,17 +306,17 @@ export class Realtime {
     const snapshot = await get(q);
     return snapshot;
   }
-  async modificarUser(data:any) {
-    try{
-    const p=this.local.getItem('key');
-    console.log(p)
-    const userRef = ref(this.db, `usuarios/${p}`);
-    await update(userRef, data);
-    this.local.setItem('user',data)
-    this.alerta.alertaExito('usuario modificado')
-    }catch (e){
+  async modificarUser(data: any) {
+    try {
+      const p = this.local.getItem('key');
+      console.log(p);
+      const userRef = ref(this.db, `usuarios/${p}`);
+      await update(userRef, data);
+      this.local.setItem('user', data);
+      this.alerta.alertaExito('usuario modificado');
+    } catch (e) {
       console.log(e);
-      this.alerta.alertaerror('Ha ocurrido un error')
+      this.alerta.alertaerror('Ha ocurrido un error');
     }
   }
 

@@ -1,17 +1,26 @@
 <div class="top-header">
-  <div style="display: flex; align-items: center; gap: 15px;">
-    <h1 style="font-size: 24px; font-weight: 700;">Asistente Virtual Inteligente</h1>
-    <span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+  <div style="display: flex; align-items: center; gap: 15px">
+    <h1 style="font-size: 24px; font-weight: 700">Asistente Virtual Inteligente</h1>
+    <span
+      style="
+        background: #10b981;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      "
+    >
       IA ACTIVA
     </span>
   </div>
-  
+
   <div class="user-actions">
     <div class="user-profile">
       <div class="avatar">UD</div>
       <div>
-        <div style="font-weight: 600;">usuario </div>
-        <div style="font-size: 12px; color: #64748b;">prostock</div>
+        <div style="font-weight: 600">{{ name }}</div>
+        <div style="font-size: 12px; color: #64748b">prostock</div>
       </div>
     </div>
   </div>
@@ -23,7 +32,7 @@
       <i class="fas fa-robot hh"></i>
       <div class="tt">
         <p class="leftex u">Asistente ProStock</p>
-        <p class="leftex">especialista en optimizacion de produccion</p>
+        <p class="leftex">mejora tus conocimientos de gestion de procuctos</p>
       </div>
     </div>
     <div #chatcont class="chat-container">
@@ -77,64 +86,46 @@
         {{ isLoading ? 'Enviando...' : 'Enviar' }}
       </button>
     </div>
-    <div class="quick-actions">
-      <button class="action-btn" data-message="Analiza mis costos de producción">
-        <i class="fas fa-calculator"></i> Análisis de Costos
-      </button>
-      <button class="action-btn" data-message="Sugiere alternativas para reducir desperdicios">
-        <i class="fas fa-recycle"></i> Reducir Desperdicios
-      </button>
-      <button class="action-btn" data-message="Optimiza mis patrones de corte">
-        <i class="fas fa-cut"></i> Optimizar Patrones
-      </button>
-      <button class="action-btn" data-message="Revisa mis niveles de inventario">
-        <i class="fas fa-boxes"></i> Revisar Inventario
-      </button>
-    </div>
   </div>
-
   <div class="suggestions-panel">
     <div class="panel-header">
       <h3 class="panel-title">Sugerencias Inteligentes</h3>
-      <p class="panel-subtitle">Basado en tu actividad reciente</p>
     </div>
 
     <div class="suggestion-cards">
+       <div class="suggestion-card waste" (click)="generarconsejo('recomendaciones')">
+        <div class="suggestion-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="suggestion-title">consejos con respecto a mi actividad</div>
+        <div class="suggestion-desc">te ayudo a mejorar tu forma de operar</div>
+      </div>
       <div
-        (click)="Sugestion('deseo saber sobre la optimizacion de procesos')"
+        (click)="generarconsejo('ahorro')"
         class="suggestion-card optimization"
       >
         <div class="suggestion-icon">
           <i class="fas fa-bolt"></i>
         </div>
         <div class="suggestion-title">Optimización de Proceso</div>
-        <div class="suggestion-desc">
-          Puedes reducir tiempo de producción en 15% reorganizando etapas
-        </div>
+        <div class="suggestion-desc">¿qué es la optimización de procesos?</div>
       </div>
-
-      <div class="suggestion-card waste"
-      (click)="Sugestion('deseo saber sobre la reduccion de desperdicios')"
-      >
-        <div class="suggestion-icon">
-          <i class="fas fa-trash-restore"></i>
-        </div>
-        <div class="suggestion-title">Reducción de Desperdicio</div>
-        <div class="suggestion-desc">
-          aprende como evitar desperdicios
-        </div>
-      </div>
-
-      <div class="suggestion-card cost"
-      (click)="Sugestion('deseo saber como ahorrar costos')"
-      >
+      <div class="suggestion-card cost" (click)="generarconsejo('otro')" >
         <div class="suggestion-icon">
           <i class="fas fa-dollar-sign"></i>
         </div>
         <div class="suggestion-title">Ahorro de Costos</div>
-        <div class="suggestion-desc">Mejora y gana mas teniendo menos perdidas </div>
+        <div class="suggestion-desc">basado en tu actividad</div>
       </div>
-
     </div>
   </div>
 </main>
+
+@if (revisandoI){
+  <div class="overlay">
+  <div class="loader">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Estoy  revisando tu inventario para una respuesta mas acertada</p>
+  </div>
+</div>
+}

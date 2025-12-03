@@ -1,5 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import {
+  Auth,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  signOut,
+} from '@angular/fire/auth';
 import { Switalert2Service } from './switalert2.service';
 import { Realtime } from './realtime';
 import { StorageService } from './localstorage.service';
@@ -25,11 +30,19 @@ export class loginservice {
       // 🔐 verificar si el correo está verificado
       if (!user.emailVerified) {
         await this.auth.signOut();
-        this.alerta.alertaerror('Debes verificar tu correo antes de ingresar, puedes buscar en sms recibidos o en spams');
+        this.alerta.alertaerror(
+          'Debes verificar tu correo antes de ingresar, puedes buscar en sms recibidos o en spams'
+        );
+        sendEmailVerification(user)
+          .then(() => {
+            console.log('Correo de verificación enviado.');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         return;
       }
 
-      
       const id = user.uid;
       const userDataSnap = await this.realtime.getUsuarioPorId(id);
       const data = userDataSnap.val();
@@ -71,6 +84,9 @@ export class loginservice {
   async logout() {
     try {
       await signOut(this.auth);
+      localStorage.removeItem('negocio');
+      localStorage.removeItem('key');
+      localStorage.removeItem('user');
       return true;
     } catch (error) {
       console.error('Error al cerrar sesión:', error);

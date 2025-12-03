@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>modificar Negocio</h2>
+  <p>si ya modificaste tu negocio se reescribiran tus datos</p>
+  <form [formGroup]="negocioForm" (ngSubmit)="guardar()">
+
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre">
+
+    <label>Descripción</label>
+    <textarea formControlName="descripcion"></textarea>
+
+    <label>Dirección</label>
+    <input type="text" formControlName="direccion">
+
+    <label>Departamento</label>
+    <select formControlName="departamento" (change)="onDepartamentoChange()">
+      <option value="">Seleccione…</option>
+
+      @for (depto of departamentosArray; track depto.nombre) {
+        <option [value]="depto.nombre">{{ depto.nombre }}</option>
+      }
+    </select>
+
+    <label>Ciudad / Municipio</label>
+    <select formControlName="ciudad">
+      <option value="">Seleccione…</option>
+
+      @for (mun of municipios; track mun) {
+        <option [value]="mun">{{ mun }}</option>
+      }
+    </select>
+    <button type="submit" [disabled]="negocioForm.invalid">Guardar</button>
+
+  </form>
+</div>
+@if (enviando) {
+<app-componente-carga></app-componente-carga>
+}
+

@@ -332,6 +332,36 @@ export class Realtime {
     return snapshot;
   }
 
+  // funcion para obtener un negocio o otro nodo
+  async getNodo(key: string, nameNodo: string): Promise<any> {
+    try {
+      const referencia = ref(this.db, `${nameNodo}/${key}`);
+      const snapshot = await get(referencia);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async crearNegocio(idNegocio: string, datosNegocio: any) {
+    try {
+      const referencia = ref(this.db, 'Negocio/' + idNegocio);
+      await set(referencia, datosNegocio);
+      this.alerta.alertaExito('Negocio creado correctamente!');
+      this.local.setItem('negocio',datosNegocio);
+      this.ruta.navigate(['/perfil'])
+      return true;
+    } catch (error) {
+      this.alerta.alertaerror('Error al crear negocio');
+      this.ruta.navigate(['/perfil'])
+      return false;
+    }
+  }
+
   constructor(
     private ruta: Router,
     private db: Database,

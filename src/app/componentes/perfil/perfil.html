@@ -26,3 +26,64 @@
     }
   </div>
 </div>
+<!-- no negocio -->
+@if (!negocio) {
+<div class="alerta-negocio">
+  <h3><i class="fas fa-exclamation-triangle"></i> recomendacion</h3>
+  <p>Aún no has ingresado datos de tu negocio. Por favor agrega la información para que los usuarios puedan ver mas a detalle de que se trata tu negocio</p>
+  <button routerLink="../ModificarN" class="btn-agregar"><i class="fas fa-plus"></i> Agregar</button>
+</div>
+} @else {
+
+<!-- Datos del negocio -->
+<div class="negocio-card">
+  <h2 class="titulo-negocio"><i class="fas fa-store"></i> Información del Negocio</h2>
+
+  <div class="detalle-negocio">
+    <div class="detalle-item">
+      <i class="fas fa-tag"></i>
+      <span>Nombre:</span>
+      <p>{{ negocio.nombre }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-align-left"></i>
+      <span>Descripción:</span>
+      <p>{{ negocio.descripcion }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>Dirección:</span>
+      <p>{{ negocio.direccion }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-city"></i>
+      <span>Ciudad:</span>
+      <p>{{ negocio.ciudad }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-map"></i>
+      <span>Departamento:</span>
+      <p>{{ negocio.departamento }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span>Fecha de Registro:</span>
+      <p>{{ negocio.fechaRegistro }}</p>
+    </div>
+
+    <div class="detalle-item">
+      <i class="fas fa-heart"></i>
+      <span>Likes:</span>
+      <p>{{ negocio.like }}</p>
+    </div>
+  </div>
+
+  <button routerLink="../ModificarN" class="btn-editar"><i class="fas fa-edit"></i> Editar</button>
+</div>
+
+}

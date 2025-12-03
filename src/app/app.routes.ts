@@ -21,6 +21,7 @@ import { loginRestriccionGuard } from './guard/login-restriccion-guard';
 import { SuperAdmin } from './componentes/super-admin/super-admin';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil';
 import { Cambiofotoperfil } from './componentes/cambiofotoperfil/cambiofotoperfil';
+import { IngresarNegocio } from './componentes/ingresar-negocio/ingresar-negocio';
 
 export const routes: Routes = [
     {path:'ajustes', component:Ajustes},
@@ -41,6 +42,7 @@ export const routes: Routes = [
     {path:'no-autorizado', component:NoAutorizado},
     {path:'editar_P', component:EditarPerfilComponent},
     {path:'superadmin', component:SuperAdmin},
+    {path:'ModificarN', component:IngresarNegocio,canActivate:[clienteRestriccionGuard]},
     {path:'fotoPerfil', component:Cambiofotoperfil},
     {path:'**', component:Notfound}
 ];

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { StorageService } from '../../services/localstorage.service';
 import { Switalert2Service } from '../../services/switalert2.service';
+import { Realtime } from '../../services/realtime';
 
 @Component({
   selector: 'app-perfil',
@@ -10,22 +11,23 @@ import { Switalert2Service } from '../../services/switalert2.service';
   styleUrl: './perfil.css',
 })
 export class Perfil implements OnInit {
-  urli='https://tse3.mm.bing.net/th/id/OIP.Dcmvj77Aeroc6HDfO26jlQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+  urli =
+    'https://tse3.mm.bing.net/th/id/OIP.Dcmvj77Aeroc6HDfO26jlQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3';
   usuario = {
     nombre: '',
     tipo: '',
     numero: '',
     correo: '',
-    urlimg:''
+    urlimg: '',
   };
   accesos = [
     { titulo: 'Ingresar Productos', link: '../ingresarpro', texbtn: 'publicar' },
     { titulo: 'Mi Inventario', link: '../gestionpro', texbtn: 'ver Insumos' },
-    { titulo: 'Compartir perfil', texbtn: 'Copiar'}
+    { titulo: 'Compartir perfil', texbtn: 'Copiar' },
   ];
 
   copiarLink() {
-    const link = 'http://localhost:4200/visitarperfil/'+this.local.getItem('key')
+    const link = 'http://localhost:4200/visitarperfil/' + this.local.getItem('key');
     navigator.clipboard
       .writeText(link)
       .then(() => this.alerta.alertaExito('Link copiado al portapapeles'))
@@ -33,12 +35,41 @@ export class Perfil implements OnInit {
   }
   ngOnInit(): void {
     this.usuario = this.local.getItem('user');
-    if(this.usuario.urlimg!=''){
-      this.urli=this.usuario.urlimg;
+    if (this.usuario.urlimg != '') {
+      this.urli = this.usuario.urlimg;
     }
     if (this.usuario === null) {
       this.ruta.navigate(['../']);
+    } else {
+      const Negocio = this.local.getItem('negocio');
+      if (Negocio === null) {
+        const key = this.local.getItem('key');
+        this.obterminegocio(key);
+      }else{
+        this.negocio=Negocio;
+        console.log(this.negocio);
+      }
+
     }
   }
-  constructor(private local: StorageService, private ruta: Router,private alerta:Switalert2Service) {}
+
+  negocio:any;
+
+  async obterminegocio(key: string) {
+    const MiN = await this.realtime.getNodo(key, 'Negocio');
+    if (MiN != null) {
+      this.local.setItem('negocio', MiN);
+      this.negocio=MiN;
+      console.log(this.negocio);
+    } else {
+      
+    }
+  }
+
+  constructor(
+    private realtime: Realtime,
+    private local: StorageService,
+    private ruta: Router,
+    private alerta: Switalert2Service
+  ) {}
 }

@@ -17,7 +17,19 @@ import { ComponenteCarga } from '../componente-carga/componente-carga';
 export class IngresoProducto implements OnInit{
   cargando=false;
   // constantes de la clase
-  categorias = ['cuero', 'Alimentos', 'Textil', 'Madera','otros'];
+  categorias = [
+  'Alimentos y Bebidas',
+  'Moda y Textiles',
+  'Artesanías y Cuero',
+  'Madera y Carpintería',
+  'Tecnología y Electrónica',
+  'Hogar y Decoración',
+  'Salud y Belleza',
+  'Limpieza y Cuidado del Hogar',
+  'Herramientas y Construcción',
+  'Otros'
+];
+
   urlimgactual = ''
   imag: File | undefined;
   producto = {

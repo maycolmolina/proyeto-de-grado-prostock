@@ -16,6 +16,7 @@ import {
 } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { sendEmailVerification } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -84,11 +85,14 @@ export class Realtime {
       usuario.contrasenia = '';
       await set(usuarioref, usuario);
 
-      this.alerta.alertaExito('El usuario ha sido registrado correctamente');
-      usuario.contrasenia = '';
-      this.local.setItem('user', usuario);
-      this.local.setItem('key', uid);
-      this.ruta.navigate(['perfil']);
+      const user = userc.user;
+      await sendEmailVerification(user);
+
+      this.alerta.info(
+        'Usuario registrado. Verifica tu correo electrónico antes de iniciar sesión. revisa tus spam si no lo encuentras'
+      );
+       await this.auth.signOut();
+       this.ruta.navigate(['login']);
     } catch (error: any) {
       switch (error.code) {
         case 'auth/email-already-in-use':
@@ -116,7 +120,9 @@ export class Realtime {
   datosIA: any = {
     productos: [],
     ventas: [],
-    compras: ['esto se refiere a cuando adquiero los productos , por ende esta en porductos estos datos'],
+    compras: [
+      'esto se refiere a cuando adquiero los productos , por ende esta en porductos estos datos',
+    ],
     plantillas: [],
   };
   async recoleccionDatos(idUsuario: string) {

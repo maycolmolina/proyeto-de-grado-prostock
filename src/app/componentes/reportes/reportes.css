@@ -69,7 +69,36 @@ th {
 .cuero tr th{
   background-color: var(--color-accent-dark);
 }
+.titulo-ganancia {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--texto);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
+.titulo-ganancia i {
+  font-size: 2rem;
+  color:rgb(15, 170, 59); /* tu verde del tema */
+}
+.titulo-ganancia strong {
+  font-size: 2rem;
+  color:rgb(15, 170, 59); /* tu verde del tema */
+}
+.titulo-salida i {
+  font-size: 2rem;
+  color:rgb(170, 15, 15); /* tu verde del tema */
+}
+.titulo-salida strong {
+  font-size: 2rem;
+  color:rgb(170, 15, 15); /* tu verde del tema */
+}
 
 /* ------------------- Media Queries para Reportes ------------------- */
 
@@ -177,9 +206,11 @@ body {
   border-radius: 16px;
   padding: 2rem;
   width: 100%;
-  max-width: 700px;
+  max-width:90%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  height: 60vh;
+  overflow-y: scroll;
 }
 
 .titulo {

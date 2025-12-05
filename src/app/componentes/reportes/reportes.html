@@ -52,7 +52,13 @@
           </tr>
           }
         </tbody>
+        
       </table>
+      <h1 class="titulo-ganancia">
+          <i class="fas fa-chart-line"></i>
+          <strong>Ganancia Total: {{ gananciaTotal }} C$</strong>
+      </h1>
+
     </div>
     <!-- seccion para mostrar las ganacias pro fecha por mes o por productos________________ -->
     @if(mostrarGanancias){
@@ -95,6 +101,39 @@
           </div>
         </div>
 
+_________________________________________________________________________
+        <div class="madera ventas">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Proveedor</th>
+            <th>Ganancia</th>
+            <th>Precio Total de la venta</th>
+            <th>Precio Unitario</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pro of RegistroVentaff; track $index) {
+          <tr>
+            <td>{{ pro.nombre }}</td>
+            <td>{{ pro.costo }} C$</td>
+            <td>{{ pro.cantidad }}</td>
+            <td>{{ pro.proveedor }}</td>
+            <td>{{ pro.ganancia }}C$</td>
+            <td>{{ pro.precio_total }}C$</td>
+            <td>{{ pro.precio_unidad }} C$</td>
+            <td>{{ pro.fecha }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <!-- ______________________________________________________________ -->
+
         <br /><br />
         <button (click)="cambiarMostrarG()" class="btn btn-danger">cerrar</button>
       </div>
@@ -135,6 +174,10 @@
           }
         </tbody>
       </table>
+      <h1 class="titulo-salida">
+          <i class="fas fa-chart-line"></i>
+          <strong>salidas: {{ totalSalidas }} C$</strong>
+      </h1>
     </div>
     }
   </div>

@@ -21,6 +21,7 @@ export class Reportes implements OnInit {
   gananciaTotal = 0;
   gananaciaPorDia = 0;
   diaG='';
+  totalSalidas=0
   cambiarMostrarG() {
     this.mostrarGanancias = !this.mostrarGanancias;
   }
@@ -47,29 +48,70 @@ export class Reportes implements OnInit {
   }
   async cargarmipro() {
     this.misproductosv = await this.realtime.getMiProducto();
+    this.totalSalidas = 0; 
+  for (let x = 0; x < this.misproductosv.length; x++) {
+    let producto = this.misproductosv[x];
+    // Si el producto tiene salidas o la propiedad que usas
+    if (producto.costo && producto.costo > 0) {
+      this.totalSalidas += producto.costo;
+    }
+  }
     this.cargando = false;
   }
   verGananciasPorDia() {
-    this.gananaciaPorDia = 0;
-    
-    for (let x = 0; x < this.RegistroVenta.length; x++) {
-      let dia = this.RegistroVenta[x].fecha;
-      if (dia === this.diaG) {
-        this.gananaciaPorDia = this.gananaciaPorDia + this.RegistroVenta[x].ganancia;
-      }
-    }
-    console.log(this.gananaciaPorDia);
-  }
+  this.gananaciaPorDia = 0;
+  this.RegistroVentaff = []; // limpiamos la lista filtrada
 
-  verGananciaDeMes() {
-    this.gananciaMes = 0;
-    for (let x = 0; x < this.RegistroVenta.length; x++) {
-      let mes = this.obtenerMesDeFecha(this.RegistroVenta[x].fecha);
-      if (mes === this.mesSeleccionado) {
-        this.gananciaMes = this.gananciaMes + this.RegistroVenta[x].ganancia;
-      }
+  for (let x = 0; x < this.RegistroVenta.length; x++) {
+    let dia = this.RegistroVenta[x].fecha;
+
+    if (dia === this.diaG) {
+      this.gananaciaPorDia += this.RegistroVenta[x].ganancia;
+
+      // Guardamos el registro filtrado
+      this.RegistroVentaff.push(this.RegistroVenta[x]);
     }
   }
+}
+
+  // verGananciasPorDia() {
+  //   this.gananaciaPorDia = 0;
+    
+  //   for (let x = 0; x < this.RegistroVenta.length; x++) {
+  //     let dia = this.RegistroVenta[x].fecha;
+  //     if (dia === this.diaG) {
+  //       this.gananaciaPorDia = this.gananaciaPorDia + this.RegistroVenta[x].ganancia;
+  //     }
+  //   }
+  //   console.log(this.gananaciaPorDia);
+  // }
+  RegistroVentaff: any = [];
+  verGananciaDeMes() {
+  this.gananciaMes = 0;
+  this.RegistroVentaff = []; // limpiamos la lista filtrada
+
+  for (let x = 0; x < this.RegistroVenta.length; x++) {
+    let mes = this.obtenerMesDeFecha(this.RegistroVenta[x].fecha);
+
+    if (mes === this.mesSeleccionado) {
+      this.gananciaMes += this.RegistroVenta[x].ganancia;
+
+      // Guardamos el registro filtrado
+      this.RegistroVentaff.push(this.RegistroVenta[x]);
+    }
+  }
+}
+
+
+  // verGananciaDeMes() {
+  //   this.gananciaMes = 0;
+  //   for (let x = 0; x < this.RegistroVenta.length; x++) {
+  //     let mes = this.obtenerMesDeFecha(this.RegistroVenta[x].fecha);
+  //     if (mes === this.mesSeleccionado) {
+  //       this.gananciaMes = this.gananciaMes + this.RegistroVenta[x].ganancia;
+  //     }
+  //   }
+  // }
 
   obtenerMesDeFecha(fecha: string): string {
     // Divide la fecha por los guiones

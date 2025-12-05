@@ -31,6 +31,8 @@ export class Reportes implements OnInit {
       this.cargarmipro();
     }else if (cadena === 'ventasRealizadas') {
       this.obtenerVentapro();
+    }else if (cadena === 'GRAFICO') {
+      this.cargando = false;
     }
   }
   

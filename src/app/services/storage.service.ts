@@ -14,13 +14,13 @@ export class GlobalbaseService {
     private alerta: Switalert2Service
   ) {
     // aseguramos singleton para no crear varias conexiones
-    // if (!GlobalbaseService.supabaseInstance) {
-    //   GlobalbaseService.supabaseInstance = createClient(
-    //     'https://kdhmnxsrabnysftbdzgo.supabase.co',
-    //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkaG1ueHNyYWJueXNmdGJkemdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc2OTQ4NDQsImV4cCI6MjA3MzI3MDg0NH0.r5mLB3674rgLa4izzHYSM57dEyrtdgEBr8aiS057P50'
-    //   );
-    // }
-    // this.supabase = GlobalbaseService.supabaseInstance;
+    if (!GlobalbaseService.supabaseInstance) {
+      GlobalbaseService.supabaseInstance = createClient(
+        'https://kdhmnxsrabnysftbdzgo.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkaG1ueHNyYWJueXNmdGJkemdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc2OTQ4NDQsImV4cCI6MjA3MzI3MDg0NH0.r5mLB3674rgLa4izzHYSM57dEyrtdgEBr8aiS057P50'
+      );
+    }
+    this.supabase = GlobalbaseService.supabaseInstance;
   }
 
   async repairData(data: any) {

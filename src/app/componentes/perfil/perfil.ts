@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { StorageService } from '../../services/localstorage.service';
 import { Switalert2Service } from '../../services/switalert2.service';
 import { Realtime } from '../../services/realtime';
-
+import { dominio } from '../../../environments/environment';
 @Component({
   selector: 'app-perfil',
   imports: [RouterLink],
@@ -27,7 +27,7 @@ export class Perfil implements OnInit {
   ];
 
   copiarLink() {
-    const link = 'http://localhost:4200/visitarperfil/' + this.local.getItem('key');
+    const link = dominio + this.local.getItem('key');
     navigator.clipboard
       .writeText(link)
       .then(() => this.alerta.alertaExito('Link copiado al portapapeles'))
@@ -47,7 +47,6 @@ export class Perfil implements OnInit {
         this.obterminegocio(key);
       }else{
         this.negocio=Negocio;
-        console.log(this.negocio);
       }
 
     }

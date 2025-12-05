@@ -40,7 +40,19 @@ export class Perfilvendedor  {
       }
       this.mostrar=true
     }
+    const Negocio=await this.global.getNodo(this.id,'Negocio');
+    if(Negocio!=null){
+      this.negocio=Negocio;
+    }
   }
+  negocio:any={
+    nombre:'',
+    descripcion:'',
+    ciudad:'',
+    departamento:'',
+    direccion:'',
+    like:0
+  };
   cargar_productos(){
     this.global.getMiPro(this.id,'productos').then(
       objetoCom=>{

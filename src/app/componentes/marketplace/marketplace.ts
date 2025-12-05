@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { Realtime } from '../../services/realtime';
 import { RouterLink } from '@angular/router';
 import { ComponenteCarga } from '../componente-carga/componente-carga';
-import { usuario } from '../../objetos';
 
 @Component({
   selector: 'app-marketplace',

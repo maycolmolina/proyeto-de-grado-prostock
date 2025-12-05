@@ -13,6 +13,8 @@ import {
   get,
   push,
   set,
+  startAt,
+  endAt
 } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
@@ -369,4 +371,33 @@ export class Realtime {
     private local: StorageService,
     private auth: Auth
   ) {}
+
+  // busqueda de usuarios______________________
+  async getUsuarios(nombreusu: string): Promise<any[]> {
+  const referencia = ref(this.db, 'usuarios');
+  const consulta = query(
+    referencia,
+    orderByChild('nombre'),
+    startAt(nombreusu),
+    endAt(nombreusu + '\uf8ff')
+  );
+
+  const snapshot = await get(consulta);
+
+  if (!snapshot.exists()) {
+    return []; // si no hay resultados, devuelve arreglo vacío
+  }
+
+  // convertir snapshot en arreglo
+  const usuarios: any[] = [];
+  snapshot.forEach(child => {
+    usuarios.push({
+      id: child.key,   // opcional: incluir la key del nodo
+      ...child.val()   // incluir los datos del usuario
+    });
+  });
+
+  return usuarios;
+}
+
 }

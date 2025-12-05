@@ -36,8 +36,8 @@
               /></svg
             >whatsapp</span
           >
-        </button>
-      </a>}
+        </button> </a
+      >}
     </div>
     <span class="correo">
       <svg
@@ -93,8 +93,36 @@
       <span class="atributos">{{ usuarioActual.numero }}</span>
       }
     </span>
-    <br/><br/>
+    <br /><br />
   </div>
+  <!-- perfil del negocio -->
+  <div class="perfil-negocio">
+    <h2> <i class="fas fa-store"></i>{{'  '+negocio.nombre}}</h2>
+    <div class="info-negocio">
+      <div class="info-item">
+        <i class="fas fa-align-left"></i>
+        <span class="label">Descripción:</span>
+        <p>{{'  '+negocio.descripcion}}</p>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span class="label">Dirección:</span>
+        <p>{{'  '+negocio.direccion}}</p>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-map"></i>
+        <span class="label">Ubicacion</span>
+        <p>{{'  '+negocio.ciudad+', '+negocio.departamento}}</p>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-heart"></i>
+        <span class="label">Likes:</span>
+        <p>{{' '+negocio.likes}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- productos ofertados -->
   <div class="container-fluid text-center">
     <h2 style="display: inline; margin-right: 4px">productos ofertados</h2>
     <a (click)="cargar_productos()"
@@ -116,14 +144,18 @@
       <a
         href="mailto:{{
           usuarioActual.correo
-        }}?subject=compra&body=estoy interesado en comprar tu {{ pu.nombre }}%0A%0Aprecio:{{ pu.precio_venta }}%0A%0Acon url:%0A%0A {{ pu.urlimg }}"
+        }}?subject=compra&body=estoy interesado en comprar tu {{ pu.nombre }}%0A%0Aprecio:{{
+          pu.precio_venta
+        }}%0A%0Acon url:%0A%0A {{ pu.urlimg }}"
         ><button class="btn bn">comprar</button></a
       >
       @if (usuarioActual.numero!='' && usuarioActual.numero) {
       <a
         href="whatsapp://send?phone={{
           usuarioActual.numero
-        }}&text=hola%20estoy interesado en tu producto.%0A{{pu.urlimg}}%0Adeseo%20que%20te%20comuniques%20con%20migo"
+        }}&text=hola%20estoy interesado en tu producto.%0A{{
+          pu.urlimg
+        }}%0Adeseo%20que%20te%20comuniques%20con%20migo"
         target="_blank"
       >
         <button class="btn bn2">

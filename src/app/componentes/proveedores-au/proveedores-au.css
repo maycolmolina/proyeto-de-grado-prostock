@@ -1,58 +1,53 @@
-.body {
-  font-family: Arial, sans-serif;
-  /* background-color: #f8f9fa; */
+
+.buscarusu{
+    width: 700px;
+    margin: auto;
+    display: flex;;
+    border: solid 1px rgb(0, 0, 0,0.5);
+    border-radius: 5px;
 }
 
-section {
-  padding: 50px 0;
+.buscarusu button{
+    transition: ease 0.3s all;
+}
+.buscarusu button:hover{
+    box-shadow: 0px 0px 5px black;
+}
+.usuariosEncontrados{
+    width: 700px;
+    margin: auto;
+}
+.usuencontrado{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+.usuencontrado button{
+    position: absolute;
+    right: 3px;
+}
+.image{
+    width: 75px;
+    height: 75px;
+    border: solid black 0.5px;
+    background-size: cover;
+    border-radius: 50%;
+}
+.da{
+    padding-left: 10px;
+}
+.correode{
+    color: rgb(20, 73, 220);
 }
 
-h2 {
-  color: #2c3e50;
-}
 
-.card {
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: none;
-}
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-body a {
-  display: inline-block;
-  margin: 5px;
-  color: #0066cc;
-  text-decoration: none;
-}
-
-.card-body a:hover {
-  text-decoration: underline;
-  color: #004999;
-}
-
-@media (max-width: 768px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-  .card-text {
-    font-size: 0.95rem;
-  }
-}
-
-section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.card .card-img-top {
-  max-height: 250px;
-  object-fit: cover;
-  height: 250;
-}
-
-.card {
-  margin-bottom: 15px;
+@media screen and (max-width:710px) {
+    .buscarusu{
+        width: 95%;
+    }
+    .usuariosEncontrados{
+        width: 95%;
+    }
 }

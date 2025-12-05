@@ -1,3 +1,24 @@
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+
+// @Injectable({ providedIn: 'root' })
+// export class Chat {
+//   private apiUrl = 'https://backend-chat-prostock-production.up.railway.app/api/chat'; // cambia al dominio del deploy
+
+//   constructor(private http: HttpClient) {}
+
+//   async generateText(prompt: string): Promise<string> {
+//     try {
+//       const response: any = await this.http
+//         .post(this.apiUrl, { prompt })
+//         .toPromise();
+//       return response.text;
+//     } catch (error) {
+//       console.error('Error al conectar con el backend:', error);
+//       return 'Hubo un error al generar la respuesta.';
+//     }
+//   }
+// }
 // src/app/services/gemini.service.ts
 import { Injectable } from '@angular/core';
 import { GoogleGenerativeAI } from '@google/generative-ai';
